@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "Member")
+@Table(name = "member")
 @AllArgsConstructor
 @NoArgsConstructor
 public class MemberEntity {
@@ -28,12 +31,12 @@ public class MemberEntity {
 
 
     @Column(name = "createdAt")
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Column(name = "updatedAt")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
-    public MemberEntity(String NickName, LocalDateTime createdAt) {
-        this.nickName = NickName;
-        this.createdAt = createdAt;
-    }
 
 }

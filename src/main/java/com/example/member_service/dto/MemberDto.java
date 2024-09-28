@@ -15,5 +15,6 @@ public class MemberDto {
     final private String nickName;
 
     final private LocalDateTime createdAt;
+    final private LocalDateTime updateAt;
 
 }

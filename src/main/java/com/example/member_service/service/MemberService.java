@@ -39,6 +39,7 @@ public class MemberService {
                     MemberDto.builder()
                             .memberId(member.getMemberId())
                             .createdAt(member.getCreatedAt())
+                            .updateAt(member.getUpdatedAt())
                             .build()
             );
         }
