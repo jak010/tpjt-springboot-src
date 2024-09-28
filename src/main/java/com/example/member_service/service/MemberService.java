@@ -7,12 +7,10 @@ import com.example.member_service.dto.MemberUpdateRequest;
 import com.example.member_service.entity.MemberEntity;
 import com.example.member_service.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.dialect.function.array.ArraySliceUnnestFunction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -26,6 +24,7 @@ public class MemberService {
      * JPA - READ
      */
     public MemberDto getMember(Long memberId) {
+        // SELECT * FROM Member WHERE member = :memberid;
         MemberEntity memberEntity = memberRepository.findByMemberId(memberId);
         return MemberDto.builder()
                 .memberId(memberEntity.getMemberId())
@@ -33,12 +32,13 @@ public class MemberService {
     }
 
     public List<MemberDto> getMembersByIds(List<Long> memberIds) {
-
+        // SELECT * FROM Member WHERE member_id IN :memberIds
         List<MemberDto> members = new ArrayList<>();
         for (MemberEntity member : memberRepository.findAllByMemberIdIn(memberIds)) {
             members.add(
                     MemberDto.builder()
                             .memberId(member.getMemberId())
+                            .createdAt(member.getCreatedAt())
                             .build()
             );
         }
@@ -51,7 +51,7 @@ public class MemberService {
      */
     @Transactional
     public MemberDto saveMember(MemberCreateRequest memberCreateRequest) {
-        /* Create */
+        // INSERT INTO Member VALUES ...;
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setNickName(memberCreateRequest.getNickName());
         memberEntity.setCreatedAt(memberEntity.getCreatedAt());
@@ -72,13 +72,11 @@ public class MemberService {
             Long memberId,
             MemberUpdateRequest memberUpdateRequest
     ) {
+        // UPDATE SET Member ....
         MemberEntity memberEntity = memberRepository.findByMemberId(memberId);
-
         memberEntity.setNickName(memberUpdateRequest.getNickName());
 
         memberRepository.save(memberEntity);
-
-
     }
 
     /**

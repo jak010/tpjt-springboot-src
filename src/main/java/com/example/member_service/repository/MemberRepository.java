@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Integer> {
 
-    MemberEntity findByMemberId(Long memberId); // SELECT * FROM Member WHERE member = :memberid;
+    MemberEntity findByMemberId(Long memberId);
 
-    List<MemberEntity> findAllByMemberIdIn(List<Long> memberIds); // SELECT * FROM Member WHERE member_id IN :memberIds
+    List<MemberEntity> findAllByMemberIdIn(List<Long> memberIds);
 
 
     void deleteByMemberId(Long memberId);
