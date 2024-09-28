@@ -3,13 +3,20 @@ package com.example.member_service.service;
 
 import com.example.member_service.dto.MemberCreateRequest;
 import com.example.member_service.dto.MemberDto;
+import com.example.member_service.dto.MemberPagingRequest;
 import com.example.member_service.dto.MemberUpdateRequest;
 import com.example.member_service.entity.MemberEntity;
 import com.example.member_service.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +51,14 @@ public class MemberService {
             );
         }
         return members;
+    }
+
+    public Page<MemberEntity> findMembers(
+            MemberPagingRequest memberPagingRequest,
+            Pageable pageable
+    ) {
+        Page<MemberEntity> pageResult = memberRepository.findAll(pageable);
+        return pageResult;
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.member_service.repository;
 
 import com.example.member_service.entity.MemberEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Integer> {
 
     List<MemberEntity> findAllByMemberIdIn(List<Long> memberIds);
 
+    Page<MemberEntity> findAll(Pageable pageable);
 
     void deleteByMemberId(Long memberId);
 

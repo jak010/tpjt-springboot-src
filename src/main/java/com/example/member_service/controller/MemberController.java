@@ -3,9 +3,14 @@ package com.example.member_service.controller;
 
 import com.example.member_service.dto.MemberCreateRequest;
 import com.example.member_service.dto.MemberDto;
+import com.example.member_service.dto.MemberPagingRequest;
 import com.example.member_service.dto.MemberUpdateRequest;
+import com.example.member_service.entity.MemberEntity;
 import com.example.member_service.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,11 +29,22 @@ public class MemberController {
         return memberService.getMember(memberId);
     }
 
-    @GetMapping("/")
+    @GetMapping("/member-ids")
     public List<MemberDto> findMembers(
             @RequestParam("member_id") List<Long> memberIds
     ) {
         return memberService.getMembersByIds(memberIds);
+    }
+
+    @GetMapping("/")
+    public Page<MemberEntity> findMemberWithPage(
+
+            @ParameterObject MemberPagingRequest memberPagingRequest, // @ParameterObject : Swagger UI에서 Query Parameter가 하나의 Object로 받는 걸 각각의 parameter로 분리해준다.
+            @ParameterObject Pageable page
+    ) {
+        Page<MemberEntity> memberEntities = memberService.findMembers(memberPagingRequest, page);
+
+        return memberEntities;
     }
 
 
