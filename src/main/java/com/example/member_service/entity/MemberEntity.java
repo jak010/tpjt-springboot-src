@@ -1,12 +1,11 @@
 package com.example.member_service.entity;
 
-import com.example.member_service.dto.MemberDto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 

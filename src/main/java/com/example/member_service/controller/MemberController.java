@@ -6,21 +6,29 @@ import com.example.member_service.dto.MemberDto;
 import com.example.member_service.dto.MemberUpdateRequest;
 import com.example.member_service.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
 
-    final private MemberService memberService;
+    private final MemberService memberService;
 
     @GetMapping("/{memberId}")
     public MemberDto findMember(
             @PathVariable("memberId") Long memberId
     ) {
         return memberService.getMember(memberId);
+    }
+
+    @GetMapping("/")
+    public List<MemberDto> findMembers(
+            @RequestParam("member_id") List<Long> memberIds
+    ) {
+        return memberService.getMembersByIds(memberIds);
     }
 
 

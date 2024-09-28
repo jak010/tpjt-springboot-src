@@ -7,8 +7,13 @@ import com.example.member_service.dto.MemberUpdateRequest;
 import com.example.member_service.entity.MemberEntity;
 import com.example.member_service.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.dialect.function.array.ArraySliceUnnestFunction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,12 +26,25 @@ public class MemberService {
      * JPA - READ
      */
     public MemberDto getMember(Long memberId) {
-
         MemberEntity memberEntity = memberRepository.findByMemberId(memberId);
         return MemberDto.builder()
                 .memberId(memberEntity.getMemberId())
                 .build();
     }
+
+    public List<MemberDto> getMembersByIds(List<Long> memberIds) {
+
+        List<MemberDto> members = new ArrayList<>();
+        for (MemberEntity member : memberRepository.findAllByMemberIdIn(memberIds)) {
+            members.add(
+                    MemberDto.builder()
+                            .memberId(member.getMemberId())
+                            .build()
+            );
+        }
+        return members;
+    }
+
 
     /**
      * JPA - CREATE
