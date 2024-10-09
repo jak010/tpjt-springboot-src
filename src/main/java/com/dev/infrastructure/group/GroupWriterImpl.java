@@ -15,4 +15,11 @@ public class GroupWriterImpl implements GroupWriter {
     public Group save(Group group) {
         return groupRepository.save(group);
     }
+
+    @Override
+    public Group getGroup(Long groupId) {
+        return groupRepository.findByGroupId(groupId);
+    }
+
+
 }

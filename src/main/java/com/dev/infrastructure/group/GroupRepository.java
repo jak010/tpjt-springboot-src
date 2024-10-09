@@ -6,8 +6,11 @@ import com.dev.domain.group.GroupWriter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+@Repository
 public interface GroupRepository extends JpaRepository<Group, Long> {
 
     Group save(Group group);
+
+    Group findByGroupId(Long groupId);
 
 }

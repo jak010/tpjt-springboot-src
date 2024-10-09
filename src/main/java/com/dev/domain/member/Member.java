@@ -1,6 +1,7 @@
 package com.dev.domain.member;
 
 import com.dev.domain.AbstractEntity;
+import com.dev.domain.group.Group;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,8 +24,9 @@ public class Member extends AbstractEntity {
     private String nickName;
 
 
-    @Column(length = 200, name = "group_id", nullable = true)
-    private Integer groupId;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     @Column(length = 10, name = "grade")
     @Enumerated(EnumType.STRING)
@@ -32,7 +34,7 @@ public class Member extends AbstractEntity {
 
 
     @Builder
-    public Member(String nickName) {
+    public Member(String nickName, Long groupId) {
         this.nickName = validationCheckNickName(nickName);
         this.grade = Grade.NORMAL;
     }
