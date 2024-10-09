@@ -23,7 +23,7 @@ public class Member extends AbstractEntity {
     private String nickName;
 
 
-    @Column(length = 200, name = "nick_name", nullable = true)
+    @Column(length = 200, name = "group_id", nullable = true)
     private Integer groupId;
 
     @Column(length = 10, name = "grade")
