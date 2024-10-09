@@ -6,10 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 
 @Entity
@@ -26,6 +22,9 @@ public class Member extends AbstractEntity {
     @Column(length = 200, name = "nick_name")
     private String nickName;
 
+
+    @Column(length = 200, name = "nick_name", nullable = true)
+    private Integer groupId;
 
     @Column(length = 10, name = "grade")
     @Enumerated(EnumType.STRING)

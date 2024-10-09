@@ -1,4 +1,4 @@
-package com.dev.infrstructure;
+package com.dev.infrastructure.member;
 
 import com.dev.domain.member.Member;
 import com.dev.domain.member.MemberWriter;

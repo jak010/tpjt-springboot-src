@@ -1,5 +1,6 @@
-package com.dev.infrstructure;
+package com.dev.infrastructure.member;
 
+import com.dev.common.exception.EntityNotFoundException;
 import com.dev.domain.member.Member;
 import com.dev.domain.member.MemberReader;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class MemberReaderImpl implements MemberReader {
     @Override
     public Member getMember(Long memberId) {
         return memberRepository.findByMemberId(memberId)
-                .orElseThrow(() -> new RuntimeException("Not Exist Member"));
+                .orElseThrow(() -> new EntityNotFoundException("Member를 찾을 수 없음"));
 
     }
 }

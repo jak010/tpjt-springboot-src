@@ -1,6 +1,7 @@
 package com.dev.interfaces;
 
 
+import com.dev.common.response.CommonResponse;
 import com.dev.domain.member.MemberInfo;
 import com.dev.domain.member.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +23,13 @@ public class MemberApiAController {
 
 
     @GetMapping("/{memberId}")
-    public MemberInfo getMember(@PathVariable("memberId") Long memberId) {
+    public CommonResponse<MemberDto.RegisterResponse> getMember(
+            @PathVariable("memberId") Long memberId
+    ) {
         var memberInfo = memberService.getMember(memberId);
-        return memberInfo;
+        var response = new MemberDto.RegisterResponse(memberInfo);
+        return CommonResponse.success(response);
+
 
     }
 

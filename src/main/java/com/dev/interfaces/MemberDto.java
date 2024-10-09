@@ -28,9 +28,12 @@ public class MemberDto {
     public static class RegisterResponse {
 
         private final String nickName;
+        private final String grade;
 
         public RegisterResponse(MemberInfo memberInfo) {
+
             this.nickName = memberInfo.getNickName();
+            this.grade = memberInfo.getGrade().name();
         }
 
     }

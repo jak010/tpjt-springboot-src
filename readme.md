@@ -14,10 +14,9 @@
 
 ## Logging
 
-- ORM Query Logging
-
-```text
-logging.level.org.hibernate.SQL=debug
-logging.level.org.hibernate.type.descriptor.sql=trace
-logging.level.org.hibernate.orm.jdbc.bind=trace
-```
+- Hibernate Query Logging Property
+    ```text
+    logging.level.org.hibernate.SQL=debug
+    logging.level.org.hibernate.type.descriptor.sql=trace
+    logging.level.org.hibernate.orm.jdbc.bind=trace
+    ```
