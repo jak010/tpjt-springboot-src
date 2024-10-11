@@ -1,7 +1,7 @@
 package com.dev.domain.group;
 
 import com.dev.domain.AbstractEntity;
-import com.dev.domain.member.Member;
+import com.dev.domain.group.group_member.GroupMember;
 import com.google.common.collect.Lists;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -26,8 +26,11 @@ public class Group extends AbstractEntity {
     @Column(name = "group_name")
     private String groupName;
 
+
+    // 연관관계의 주인이 되는 쪽에 mappedBy 속성 설정
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "group", cascade = CascadeType.PERSIST)
-    private List<Member> memberList = Lists.newArrayList();
+    private final List<GroupMember> groupMembers = Lists.newArrayList();
+
 
     @Builder
     public Group(String groupName) {

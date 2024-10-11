@@ -20,21 +20,21 @@ public class Member extends AbstractEntity {
     @Column(name = "member_id")
     private Long memberId;
 
-    @Column(length = 200, name = "nick_name")
+    @Column(name = "nick_name")
     private String nickName;
 
 
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+//    @ManyToOne
+//    @JoinColumn(name = "group_id")
+//    private Group group;
 
-    @Column(length = 10, name = "grade")
+    @Column(name = "grade")
     @Enumerated(EnumType.STRING)
     private Grade grade;
 
 
     @Builder
-    public Member(String nickName, Long groupId) {
+    public Member(String nickName, Group group) {
         this.nickName = validationCheckNickName(nickName);
         this.grade = Grade.NORMAL;
     }
