@@ -10,13 +10,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.ZonedDateTime;
 
-//@Table(name = "group_member", uniqueConstraints = {
-//        @UniqueConstraint(
-//                name = "GROUP_MEBMER_UNIQUE_CONSTRAINT",
-//                columnNames = {"group_id", "member_id"}
-//        )
-//})
-@Table(name = "group_member")
+@Table(name = "group_member", uniqueConstraints = {
+        @UniqueConstraint(
+                name = "GROUP_MEBMER_UNIQUE_CONSTRAINT",
+                columnNames = {"group_id", "member_id"}
+        )
+})
+//@Table(name = "group_member")
 @Entity
 @Getter
 @NoArgsConstructor
@@ -34,8 +34,10 @@ public class GroupMember extends AbstractEntity {
     private Long memberId;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status status;
 
+    @Column(name = "joinedAt")
     private ZonedDateTime joinedAt;
 
 

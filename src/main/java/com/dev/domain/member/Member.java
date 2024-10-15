@@ -24,10 +24,6 @@ public class Member extends AbstractEntity {
     private String nickName;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "group_id")
-//    private Group group;
-
     @Column(name = "grade")
     @Enumerated(EnumType.STRING)
     private Grade grade;

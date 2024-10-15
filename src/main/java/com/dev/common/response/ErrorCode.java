@@ -9,7 +9,8 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public enum ErrorCode {
 
-    COMMON_INVALID_PARAMETER("요청한 값이 올바르지 않습니다.");
+    COMMON_INVALID_PARAMETER("요청한 값이 올바르지 않습니다."),
+    ENTITY_DUPLICATE_OCCUR("중복된 ENTITY");
 
     private final String errorMsg;
 

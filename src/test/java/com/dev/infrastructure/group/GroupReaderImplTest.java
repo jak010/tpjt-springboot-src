@@ -27,19 +27,18 @@ class GroupReaderImplTest {
         // Arrange
         var group = sut.getGroup(1L);
         for (long i = 0; i < 3; i++) {
-            var groupMember = GroupMember.builder()
+            groupMemberWriter.addGroupMember(GroupMember.builder()
                     .group(group)
                     .memberId(i)
-                    .build();
-            groupMemberWriter.addGroupMember(groupMember);
+                    .build()
+            );
         }
 
+        // Act
         var savedGroup = sut.getGroup(1L);
 
         // Assert
-        Assertions.assertEquals(savedGroup.getGroupMembers().size(), 3);
-
-
+        Assertions.assertEquals(savedGroup.getMemberTotal(), 3);
     }
 
 }

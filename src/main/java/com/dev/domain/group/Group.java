@@ -37,4 +37,8 @@ public class Group extends AbstractEntity {
         this.groupName = groupName;
     }
 
+    public int getMemberTotal() {
+        return groupMembers.size();
+    }
+
 }
